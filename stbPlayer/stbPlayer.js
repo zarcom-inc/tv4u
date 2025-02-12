@@ -26,6 +26,26 @@ var scheme='http://';
 
 var useragent = navigator.userAgent;
 if (window.location.href.indexOf('https:')>=0) scheme='https://';
+<<<<<<< HEAD
+=======
+/*
+try {
+  var _xhr = new XMLHttpRequest();
+  _xhr.open('GET', 'https://ott.drm-play.com/scheme.php', true);
+  _xhr.onerror = function () {scheme='http://';};
+  _xhr.onreadystatechange = function () {if (_xhr.readyState === 4 && _xhr.status === 204&&useragent.indexOf('Maple')===false&&useragent.indexOf('LG SimpleSmart')===false&&useragent.indexOf('LG NetCast.TV')===false&&useragent.indexOf('MAG')===false) { scheme='http://';} };
+  _xhr.send();
+} catch(e) {scheme='http://';} 
+*/
+//if (useragent.indexOf('Android')>0){scheme='https://';}
+//if (useragent.indexOf('Maple')>0||useragent.indexOf('LG SimpleSmart')>0||useragent.indexOf('LG NetCast.TV')>0 ||useragent.indexOf('MAG')>0){scheme='http://';}
+//console.log('scheme:'+scheme);
+host=scheme+'ott.drm-play.com';
+
+//if(typeof(host) == "undefined") host = '';
+
+//if(host != 'http://ott-play.com') host = ''; // for SONY !!!!!
+>>>>>>> parent of b1eef44 (host test)
 
 var listdrm=0,abcv=0;
 function getWidthK(){ return window.innerWidth/1280; }
