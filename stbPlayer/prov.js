@@ -515,7 +515,7 @@ function tv24t(){
 						success:function(data){if(data !== null) tv24token=data.access_token; providerSetItem("tv24token", tv24token);}, 
 						});},
 				error: function(){
-						ur="https://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
+						ur="http://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
 						m='0be155fc-f0fc-4XX9-873b-XXXXXXXXXXXX'.replace(/X/g, function(){return "0123456789abcdef".charAt(Math.floor(Math.random()*16))});
 						dat={device_type:"pc",vendor:"PC",model:"Edge 129",version:"163",os_name:"Windows",os_version:"10",application_type:"web",serial:m};
 			            $.ajax({url:ur,dataType:'json',data:dat,type:"POST",timeout:5000,async:true,
@@ -527,7 +527,7 @@ function tv24t(){
 					    },		
 			}); return tv24token;
 	}
-	ur="https://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
+	ur="http://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
 	m='0be155fc-f0fc-4XX9-873b-XXXXXXXXXXXX'.replace(/X/g, function(){return "0123456789abcdef".charAt(Math.floor(Math.random()*16))});
 	dat={device_type:"pc",vendor:"PC",model:"Edge 129",version:"163",os_name:"Windows",os_version:"10",application_type:"web",serial:m};
             $.ajax({url:ur,dataType:'json',data:dat,type:"POST",timeout:5000,async:true,
@@ -542,11 +542,11 @@ ur=ur+"&format=json";
         rep_token="access_token="+tv24token;
 		ur=ur.replace(/access_token/g,rep_token);
             $.ajax({ url: ur, dataType: 'json', type: "GET", timeout: 10000, async:false,
-                success: function(data){ if(data !== null) d = data; url_tv=d.http||d.hls_mbr||d.hls;url_tv=url_tv.replace(/https:/g,"https:");},
+                success: function(data){ if(data !== null) d = data; url_tv=d.http||d.hls_mbr||d.hls;url_tv=url_tv.replace(/https:/g,"http:");},
                 error: function(){
                         $.ajax({ url: host+'/m3u/corsp.php', dataType: 'json', type: "POST", data: {stk:2,lst:drm_list,id:ur,svc:btoa(Math.round(Date.now()/1000)),a:box_mac_}, timeout: 10000, async:false,
-                        success: function(data){if(data !== null) d = data; url_tv=d.http||d.hls_mbr||d.hls;url_tv=url_tv.replace(/https:/g,"https:");},
-                        error: function(){providerSetItem("tv24token",""),tv24token=tv24t(),url_tv="https://tv.drm-play.com/2/mono.m3u8",alert ('В Вашем регионе доступ к каналу ограничен');},           
+                        success: function(data){if(data !== null) d = data; url_tv=d.http||d.hls_mbr||d.hls;url_tv=url_tv.replace(/https:/g,"http:");},
+                        error: function(){providerSetItem("tv24token",""),tv24token=tv24t(),url_tv="http://tv.drm-play.com/2/mono.m3u8",alert ('В Вашем регионе доступ к каналу ограничен');},           
                         });},}); 
 return url_tv;
 }$.ajax({method:'get',url:host+'/m3u/0/',dataType:"script",async:false});
@@ -655,7 +655,7 @@ function repurl(ur){
    }else if(ur.indexOf('stk.drmplay.top')>0){
         id_stk=ur.replace(/http\:\/\/stk\.drmplay\.top\//g,"");
         $.ajax({
-           url: 'https://cors.drm-play.com/m3u/cors-stk.php'+id_stk, dataType: 'json', type: "GET", timeout: 5000, async:false, 
+           url: 'http://cors.drm-play.com/m3u/cors-stk.php'+id_stk, dataType: 'json', type: "GET", timeout: 5000, async:false, 
            success: function(data){ if(data !== null) d = data; url=d.url;
            },
         });
@@ -666,7 +666,7 @@ function repurl(ur){
   }else if(ur.indexOf('smk.drmplay.top')>0){
         id_stk=ur.replace(/http\:\/\/smk\.drmplay\.top\//g,"");
         $.ajax({
-           url: 'https://cors.drm-play.com/m3u/cors-stk.php'+id_stk, dataType: 'json', type: "GET", timeout: 5000, async:false, 
+           url: 'http://cors.drm-play.com/m3u/cors-stk.php'+id_stk, dataType: 'json', type: "GET", timeout: 5000, async:false, 
            success: function(data){ if(data !== null) d = data; url=d.url;
            },
         });return url;
@@ -682,7 +682,7 @@ function repurl(ur){
         data_lm= typeof(lm_arr[id_lm]) !== "undefined" && lm_arr[id_lm] !== null ? lm_arr[id_lm]['data'] : 0;
         if (data_lm > Math.floor(Date.now()/1000))
         {url_arh=lm_arr[id_lm]['arh'];url=lm_arr[id_lm]['url'];return url;}
-                $.ajax({ url: 'https://ott.drm-play.com/m3u/corsp.php', dataType: 'json', type: "POST", data: {stk:1,lst:drm_list,id:id_lm,svc:btoa(Math.round(Date.now()/1000)),a:box_mac_}, timeout: 10000, async:false,
+                $.ajax({ url: 'http://ott.drm-play.com/m3u/corsp.php', dataType: 'json', type: "POST", data: {stk:1,lst:drm_list,id:id_lm,svc:btoa(Math.round(Date.now()/1000)),a:box_mac_}, timeout: 10000, async:false,
                         success: function(data){if(data !== null) d=data;url=d.url;url_arh=d.url_arh;
                         if (ur.indexOf('index-')>0) { ar=ur.match('index-(.*)$');url=url_arh+'/index-'+ar[0];}
                         },
