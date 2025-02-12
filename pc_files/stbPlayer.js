@@ -5036,7 +5036,7 @@ $(document).ready(function(){
     try{
         // $(launch_id).append('<br/>Interface resolution: '+window.innerWidth+'x'+window.innerHeight);
         // $(launch_id).append('<br/>userAgent: '+navigator.userAgent);
-        $(launch_id).append('<img src="https://storage.googleapis.com/tv4u/TV4U_MSX/pc_files/400x400.png" style="position: absolute; left: 100px; bottom:100px;" height="30%" alt=""/>');
+        $(launch_id).append('<img src="https://zarcom-inc.github.io/tv4u/pc_files/400x400.png" style="position: absolute; left: 100px; bottom:100px;" height="30%" alt=""/>');
         stbInit();
 
         // var lastStart = parseInt(stbGetItem('lastStart')) || 0;
@@ -5236,7 +5236,7 @@ function loadProv(){
         delOption(edit_dealer);
     }
 
-    $.getScript("https://storage.googleapis.com/tv4u/TV4U_MSX/pc_files/prov.js", function(){
+    $.getScript("https://zarcom-inc.github.io/tv4u/pc_files/prov.js", function(){
         try{
             // _sn=0; stat();
             ga_event('provaider', 'provaider', provaider);

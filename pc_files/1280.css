@@ -2,31 +2,31 @@
 /* @import url('https://fonts.googleapis.com/css?family=Caveat:700|Roboto|Roboto+Condensed&subset=cyrillic,latin-ext'); */
 @font-face{
         font-family: "Liberation";
-        src: url(https://storage.googleapis.com/tv4u/TV4U_MSX/fonts/LiberationSans-Regular.ttf);
+        src: url(https://zarcom-inc.github.io/tv4u/fonts/LiberationSans-Regular.ttf);
 }
 @font-face{
         font-family: "Roboto";
-        src: url(https://storage.googleapis.com/tv4u/TV4U_MSX/fonts/Roboto-Regular.ttf);
+        src: url(https://zarcom-inc.github.io/tv4u/fonts/Roboto-Regular.ttf);
 }
 @font-face{
         font-family: "RobotoCondensed";
-        src: url(https://storage.googleapis.com/tv4u/TV4U_MSX/fonts/RobotoCondensed-Regular.ttf);
+        src: url(https://zarcom-inc.github.io/tv4u/fonts/RobotoCondensed-Regular.ttf);
 }
 @font-face{
         font-family: "Caveat";
-        src: url(https://storage.googleapis.com/tv4u/TV4U_MSX/fonts/Caveat-Regular.ttf);
+        src: url(https://zarcom-inc.github.io/tv4u/fonts/Caveat-Regular.ttf);
 }
 @font-face{
         font-family: "Gabriela";
-        src: url(https://storage.googleapis.com/tv4u/TV4U_MSX/fonts/Gabriela-Regular.ttf);
+        src: url(https://zarcom-inc.github.io/tv4u/fonts/Gabriela-Regular.ttf);
 }
 @font-face{
         font-family: "PTSansNarrow";
-        src: url(https://storage.googleapis.com/tv4u/TV4U_MSX/fonts/PTSansNarrow-Regular.ttf);
+        src: url(https://zarcom-inc.github.io/tv4u/fonts/PTSansNarrow-Regular.ttf);
 }
 @font-face{
         font-family: "fontello";
-        src: url(https://storage.googleapis.com/tv4u/TV4U_MSX/fonts/fontello.ttf?5);
+        src: url(https://zarcom-inc.github.io/tv4u/fonts/fontello.ttf?5);
         font-weight: normal;
         font-style: normal;
 }
@@ -391,7 +391,7 @@ body{
     position: absolute;
     background-repeat: no-repeat;
         background-position: center center;
-    background-image: url(https://storage.googleapis.com/tv4u/TV4U_MSX/fonts/pc_files/buffering.gif);
+    background-image: url(https://zarcom-inc.github.io/tv4u/fonts/pc_files/buffering.gif);
 }
 #mute{
     display: none;
@@ -402,7 +402,7 @@ body{
     height: 40px;
     background-position: center center;
     background-repeat: no-repeat;
-    background-image: url(https://storage.googleapis.com/tv4u/TV4U_MSX/fonts/pc_files/mute.png);
+    background-image: url(https://zarcom-inc.github.io/tv4u/fonts/pc_files/mute.png);
     background-size: 20px;
 }
 #volume_div{
