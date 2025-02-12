@@ -31,7 +31,7 @@ try {
   var _xhr = new XMLHttpRequest();
   _xhr.open('GET', 'https://ott.drm-play.com/scheme.php', true);
   _xhr.onerror = function () {scheme='http://';};
-  _xhr.onreadystatechange = function () {if (_xhr.readyState === 4 && _xhr.status === 204&&useragent.indexOf('Maple')===false&&useragent.indexOf('LG SimpleSmart')===false&&useragent.indexOf('LG NetCast.TV')===false&&useragent.indexOf('MAG')===false) { scheme='http://';} };
+  _xhr.onreadystatechange = function () {if (_xhr.readyState === 4 && _xhr.status === 204&&useragent.indexOf('Maple')===false&&useragent.indexOf('LG SimpleSmart')===false&&useragent.indexOf('LG NetCast.TV')===false&&useragent.indexOf('MAG')===false) { scheme='https://';} };
   _xhr.send();
 } catch(e) {scheme='http://';} 
 */
