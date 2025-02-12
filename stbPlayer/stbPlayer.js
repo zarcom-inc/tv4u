@@ -38,7 +38,7 @@ try {
 //if (useragent.indexOf('Android')>0){scheme='https://';}
 //if (useragent.indexOf('Maple')>0||useragent.indexOf('LG SimpleSmart')>0||useragent.indexOf('LG NetCast.TV')>0 ||useragent.indexOf('MAG')>0){scheme='http://';}
 //console.log('scheme:'+scheme);
-host=scheme+'https://zarcom-inc.github.io/tv4u';
+host=scheme+'ott.drm-play.com';
 
 //if(typeof(host) == "undefined") host = '';
 
