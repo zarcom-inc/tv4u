@@ -23,17 +23,24 @@ var __cv =40;
 //if(typeof(scheme) == "undefined") 
 var scheme='http://';
 
-
+//var scheme='http://'; 
 var useragent = navigator.userAgent;
 if (window.location.href.indexOf('https:')>=0) scheme='https://';
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 5a1b5b2 (http->s)
 /*
 try {
   var _xhr = new XMLHttpRequest();
   _xhr.open('GET', 'https://ott.drm-play.com/scheme.php', true);
   _xhr.onerror = function () {scheme='http://';};
+<<<<<<< HEAD
   _xhr.onreadystatechange = function () {if (_xhr.readyState === 4 && _xhr.status === 204&&useragent.indexOf('Maple')===false&&useragent.indexOf('LG SimpleSmart')===false&&useragent.indexOf('LG NetCast.TV')===false&&useragent.indexOf('MAG')===false) { scheme='http://';} };
+=======
+  _xhr.onreadystatechange = function () {if (_xhr.readyState === 4 && _xhr.status === 204&&useragent.indexOf('Maple')===false&&useragent.indexOf('LG SimpleSmart')===false&&useragent.indexOf('LG NetCast.TV')===false&&useragent.indexOf('MAG')===false) { scheme='https://';} };
+>>>>>>> parent of 5a1b5b2 (http->s)
   _xhr.send();
 } catch(e) {scheme='http://';} 
 */
@@ -45,7 +52,10 @@ host=scheme+'ott.drm-play.com';
 //if(typeof(host) == "undefined") host = '';
 
 //if(host != 'http://ott-play.com') host = ''; // for SONY !!!!!
+<<<<<<< HEAD
 >>>>>>> parent of b1eef44 (host test)
+=======
+>>>>>>> parent of 5a1b5b2 (http->s)
 
 var listdrm=0,abcv=0;
 function getWidthK(){ return window.innerWidth/1280; }
@@ -203,7 +213,11 @@ function ga_event(eventAction, eventCategory, eventLabel){
     _gap = setTimeout( function(){ ga_event('ping', 'ping', 'ping'); }, 120*60000);
 }
 var _sn=0;
-
+//  function stat(){ $.get('http://stat.ott-play.com?v='+version.substring(14).replace(/ /g,'|')+'&n='+_sn++); }
+// function stat(){ $.get('http://stat.ott-play.com/'+version.split('2021) ')[1].replace(/\//g,'.').replace(/ /g,'.')+'.'+(_sn++)); }
+// function stat(){ _sn++; ga_event('ping', 'ping', _sn+'0'); }
+// setInterval(stat, 600000);
+// function stat(){};
 function getThumbnail(icon){
     return sThumbnail&&icon?'<img src="'+icon+'" style="max-width:15%;max-height:15%;float: left; margin-right: 5px;border-width: 0px;" onerror="this.width=0;this.height=0;">':'';
 }
