@@ -38,7 +38,7 @@ try {
 //if (useragent.indexOf('Android')>0){scheme='https://';}
 //if (useragent.indexOf('Maple')>0||useragent.indexOf('LG SimpleSmart')>0||useragent.indexOf('LG NetCast.TV')>0 ||useragent.indexOf('MAG')>0){scheme='http://';}
 //console.log('scheme:'+scheme);
-host=scheme+'ott.drm-play.com';
+host=scheme+'https://zarcom-inc.github.io/tv4u';
 
 //if(typeof(host) == "undefined") host = '';
 
@@ -5036,7 +5036,7 @@ $(document).ready(function(){
     try{
         // $(launch_id).append('<br/>Interface resolution: '+window.innerWidth+'x'+window.innerHeight);
         // $(launch_id).append('<br/>userAgent: '+navigator.userAgent);
-        $(launch_id).append('<img src="https://zarcom-inc.github.io/tv4u/pc_files/400x400.png" style="position: absolute; left: 100px; bottom:100px;" height="30%" alt=""/>');
+        $(launch_id).append('<img src="https://zarcom-inc.github.io/tv4u/stbPlayer/400x400.png" style="position: absolute; left: 100px; bottom:100px;" height="30%" alt=""/>');
         stbInit();
 
         // var lastStart = parseInt(stbGetItem('lastStart')) || 0;
@@ -5236,7 +5236,7 @@ function loadProv(){
         delOption(edit_dealer);
     }
 
-    $.getScript("https://zarcom-inc.github.io/tv4u/pc_files/prov.js", function(){
+    $.getScript("https://zarcom-inc.github.io/tv4u/stbPlayer/prov.js", function(){
         try{
             // _sn=0; stat();
             ga_event('provaider', 'provaider', provaider);
