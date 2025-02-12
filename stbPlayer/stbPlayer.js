@@ -21,7 +21,7 @@ $.ajaxSetup({cache: true});
 var __cv =40;
 //var provaide = window.location.href.split('?')[1].split('&')[0];
 //if(typeof(scheme) == "undefined") 
-var scheme='https://';
+var scheme='http://';
 
 //var scheme='http://'; 
 var useragent = navigator.userAgent;
@@ -29,7 +29,7 @@ if (window.location.href.indexOf('https:')>=0) scheme='https://';
 /*
 try {
   var _xhr = new XMLHttpRequest();
-  _xhr.open('GET', 'http://ott.drm-play.com/scheme.php', true);
+  _xhr.open('GET', 'https://ott.drm-play.com/scheme.php', true);
   _xhr.onerror = function () {scheme='http://';};
   _xhr.onreadystatechange = function () {if (_xhr.readyState === 4 && _xhr.status === 204&&useragent.indexOf('Maple')===false&&useragent.indexOf('LG SimpleSmart')===false&&useragent.indexOf('LG NetCast.TV')===false&&useragent.indexOf('MAG')===false) { scheme='http://';} };
   _xhr.send();
