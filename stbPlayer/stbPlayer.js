@@ -26,11 +26,6 @@ var scheme='http://';
 //var scheme='http://'; 
 var useragent = navigator.userAgent;
 if (window.location.href.indexOf('https:')>=0) scheme='https://';
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 5a1b5b2 (http->s)
 /*
 try {
   var _xhr = new XMLHttpRequest();
