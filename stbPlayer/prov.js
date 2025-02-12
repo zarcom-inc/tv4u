@@ -526,7 +526,7 @@ function tv24t(){
 						success:function(data){if(data !== null) tv24token=data.access_token; providerSetItem("tv24token", tv24token);}, 
 						});},
 				error: function(){
-						ur="https://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
+						ur="http://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
 						m='0be155fc-f0fc-4XX9-873b-XXXXXXXXXXXX'.replace(/X/g, function(){return "0123456789abcdef".charAt(Math.floor(Math.random()*16))});
 						dat={device_type:"pc",vendor:"PC",model:"Edge 129",version:"163",os_name:"Windows",os_version:"10",application_type:"web",serial:m};
 			            $.ajax({url:ur,dataType:'json',data:dat,type:"POST",timeout:5000,async:true,
@@ -538,7 +538,7 @@ function tv24t(){
 					    },		
 			}); return tv24token;
 	}
-	ur="https://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
+	ur="http://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
 	m='0be155fc-f0fc-4XX9-873b-XXXXXXXXXXXX'.replace(/X/g, function(){return "0123456789abcdef".charAt(Math.floor(Math.random()*16))});
 	dat={device_type:"pc",vendor:"PC",model:"Edge 129",version:"163",os_name:"Windows",os_version:"10",application_type:"web",serial:m};
             $.ajax({url:ur,dataType:'json',data:dat,type:"POST",timeout:5000,async:true,
@@ -861,9 +861,9 @@ function doEditListData(ind){
                     _code = json.code;
                     $('#listEdit').html(
                         '<div style="text-align:center;font-size:larger;"><br/>'+_('Request sended!')+'<br/><br/>'+
-                        _('To enter playlist value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+'</span> t.me/tv4u_bot '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
+                        _('To enter playlist value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'</span> t.me/tv4u_bot '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
                         _('or scan')+':<br/><br/>'+
-                        '<div><img src="./stbPlayer/bot.png" style="max-width: 30%; height: auto; display: block; margin: auto;" alt="bot"></div>'+
+                        '<div><img src="./pc_files/bot.png" style="max-width: 30%; height: auto; display: block; margin: auto;" alt="bot"></div>'+
                         '</div>'
                     );
                     //setTimeout(get_settings, 10000);
