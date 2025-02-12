@@ -526,7 +526,7 @@ function tv24t(){
 						success:function(data){if(data !== null) tv24token=data.access_token; providerSetItem("tv24token", tv24token);}, 
 						});},
 				error: function(){
-						ur="http://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
+						ur="https://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
 						m='0be155fc-f0fc-4XX9-873b-XXXXXXXXXXXX'.replace(/X/g, function(){return "0123456789abcdef".charAt(Math.floor(Math.random()*16))});
 						dat={device_type:"pc",vendor:"PC",model:"Edge 129",version:"163",os_name:"Windows",os_version:"10",application_type:"web",serial:m};
 			            $.ajax({url:ur,dataType:'json',data:dat,type:"POST",timeout:5000,async:true,
@@ -538,7 +538,7 @@ function tv24t(){
 					    },		
 			}); return tv24token;
 	}
-	ur="http://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
+	ur="https://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
 	m='0be155fc-f0fc-4XX9-873b-XXXXXXXXXXXX'.replace(/X/g, function(){return "0123456789abcdef".charAt(Math.floor(Math.random()*16))});
 	dat={device_type:"pc",vendor:"PC",model:"Edge 129",version:"163",os_name:"Windows",os_version:"10",application_type:"web",serial:m};
             $.ajax({url:ur,dataType:'json',data:dat,type:"POST",timeout:5000,async:true,
