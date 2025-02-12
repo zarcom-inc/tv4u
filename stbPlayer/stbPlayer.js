@@ -47,10 +47,7 @@ host=scheme+'ott.drm-play.com';
 //if(typeof(host) == "undefined") host = '';
 
 //if(host != 'http://ott-play.com') host = ''; // for SONY !!!!!
-<<<<<<< HEAD
->>>>>>> parent of b1eef44 (host test)
-=======
->>>>>>> parent of 5a1b5b2 (http->s)
+
 
 var listdrm=0,abcv=0;
 function getWidthK(){ return window.innerWidth/1280; }
