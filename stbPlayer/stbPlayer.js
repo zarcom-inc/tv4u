@@ -21,11 +21,11 @@ $.ajaxSetup({cache: true});
 var __cv =40;
 //var provaide = window.location.href.split('?')[1].split('&')[0];
 //if(typeof(scheme) == "undefined") 
-var scheme='http://';
+var scheme='https://';
 
 //var scheme='http://'; 
 var useragent = navigator.userAgent;
-if (window.location.href.indexOf('https:')>=0) scheme='http://';
+if (window.location.href.indexOf('https:')>=0) scheme='https://';
 /*
 try {
   var _xhr = new XMLHttpRequest();
