@@ -23,26 +23,9 @@ var __cv =40;
 //if(typeof(scheme) == "undefined") 
 var scheme='http://';
 
-//var scheme='http://'; 
+
 var useragent = navigator.userAgent;
 if (window.location.href.indexOf('https:')>=0) scheme='https://';
-/*
-try {
-  var _xhr = new XMLHttpRequest();
-  _xhr.open('GET', 'https://ott.drm-play.com/scheme.php', true);
-  _xhr.onerror = function () {scheme='http://';};
-  _xhr.onreadystatechange = function () {if (_xhr.readyState === 4 && _xhr.status === 204&&useragent.indexOf('Maple')===false&&useragent.indexOf('LG SimpleSmart')===false&&useragent.indexOf('LG NetCast.TV')===false&&useragent.indexOf('MAG')===false) { scheme='https://';} };
-  _xhr.send();
-} catch(e) {scheme='http://';} 
-*/
-//if (useragent.indexOf('Android')>0){scheme='https://';}
-//if (useragent.indexOf('Maple')>0||useragent.indexOf('LG SimpleSmart')>0||useragent.indexOf('LG NetCast.TV')>0 ||useragent.indexOf('MAG')>0){scheme='http://';}
-//console.log('scheme:'+scheme);
-host=scheme+'ott.drm-play.com';
-
-//if(typeof(host) == "undefined") host = '';
-
-//if(host != 'http://ott-play.com') host = ''; // for SONY !!!!!
 
 var listdrm=0,abcv=0;
 function getWidthK(){ return window.innerWidth/1280; }
@@ -200,11 +183,7 @@ function ga_event(eventAction, eventCategory, eventLabel){
     _gap = setTimeout( function(){ ga_event('ping', 'ping', 'ping'); }, 120*60000);
 }
 var _sn=0;
-//  function stat(){ $.get('http://stat.ott-play.com?v='+version.substring(14).replace(/ /g,'|')+'&n='+_sn++); }
-// function stat(){ $.get('http://stat.ott-play.com/'+version.split('2021) ')[1].replace(/\//g,'.').replace(/ /g,'.')+'.'+(_sn++)); }
-// function stat(){ _sn++; ga_event('ping', 'ping', _sn+'0'); }
-// setInterval(stat, 600000);
-// function stat(){};
+
 function getThumbnail(icon){
     return sThumbnail&&icon?'<img src="'+icon+'" style="max-width:15%;max-height:15%;float: left; margin-right: 5px;border-width: 0px;" onerror="this.width=0;this.height=0;">':'';
 }
@@ -397,9 +376,8 @@ function _playChannel(cat, index){
     playType = 0;
     var url_a= getChannelUrl(ch_id);eStream=0;aRest=0;eRest=0;
 //    if(typeof(_setAutoRefreshRate)!=='function') {
-     if (url_a.indexOf('acestream:')>=0){eStream=1;var acestr='http://'+eAce+'/ace/manifest.m3u8?id=';url_a=url_a.replace(/acestream:\/\//g, acestr);}
-//     else if (url_a.indexOf('infohash:')>=0){eStream=1;var acestr = 'http://'+eAce+'/ace/getstream?infohash=';url_a=url_a.replace(/infohash:\/\//g, acestr);}
-     else if (url_a.indexOf('infohash:')>=0){eStream=1;var acestr = 'http://'+eAce+'/ace/manifest.m3u8?infohash=';url_a=url_a.replace(/infohash:\/\//g, acestr);}
+     if (url_a.indexOf('acestream:')>=0){eStream=1;var acestr='https://'+eAce+'/ace/manifest.m3u8?id=';url_a=url_a.replace(/acestream:\/\//g, acestr);}
+     else if (url_a.indexOf('infohash:')>=0){eStream=1;var acestr = 'https://'+eAce+'/ace/manifest.m3u8?infohash=';url_a=url_a.replace(/infohash:\/\//g, acestr);}
      url_a=url_a.replace(/\$\{token_m\}/g, m_token)
      .replace(/\$\{token_t\}/g, 'drmreq='+t_token)
      .replace(/\$\{token_n\}/g, 'token='+n_token)
@@ -800,7 +778,7 @@ function parentChannel(){
     showPage();
 }
 var TMDb = {
-    api_url: 'http://api.themoviedb.org/3/',
+    api_url: 'https://api.themoviedb.org/3/',
     api_key: '9759770d3dd0c01a9498909c517a7bdd',
     la: {'_eng':'en', '_arm':'hy', '_bel':'be', '_fra':'fr', '_ger':'de', '_gre':'el', '_heb':'he', '_hun':'hu', '_lat':'lv', '_lit':'lt', '_pol':'pl', '_por':'pt', '_rou':'ro', '_rus':'ru', '_spa':'es', '_tur':'tr', '_ukr':'uk'},
     media_type_id: '',
@@ -821,12 +799,12 @@ var TMDb = {
                 if(val.job=='Director') director.push(val.name);
                 else if(val.job=='Screenplay') script.push(val.name);
             });
-            return '<div id="_prdD" style="margin: -'+10*getHeightK()+'px; background-position: right -200px top; background-size: cover; background-repeat: no-repeat; background-image: url(http://image.tmdb.org/t/p/w500/'+item.backdrop_path+');">'
+            return '<div id="_prdD" style="margin: -'+10*getHeightK()+'px; background-position: right -200px top; background-size: cover; background-repeat: no-repeat; background-image: url(https://image.tmdb.org/t/p/w500/'+item.backdrop_path+');">'
                 // +'<div style="padding:'+20*getHeightK()+'px; background: rgba(13, 37, 63, 0.8); background: linear-gradient(to right, rgba(13, 37, 63, 1) 0%, rgba(13, 37, 63, 0.8) 100%); background: -moz-linear-gradient(left, rgba(13,37,63,1) 0%, rgba(13,37,63,0.8) 100%); background: -webkit-linear-gradient(left, rgba(13,37,63,1) 0%,rgba(13,37,63,0.8) 100%);">'
                 +'<div style="padding:'+20*getHeightK()+'px; background: rgba(13, 37, 63, 0.8); background: linear-gradient(to right, rgba(13, 37, 63, 1) 0%, rgba(13, 37, 63, 0.8) 100%);">'
                 +'<table>'
                 + '<img height="'+20*getHeightK()+'" src="'+host+'/stbPlayer/blue_short.png" alt="TMDb" style="float: right; border-width: 0px; border-style: solid;" onerror="this.width=0;this.height=0;">'
-                + (item.poster_path?'<img height="'+300*getHeightK()+'" width="'+200*getHeightK()+'" src="http://image.tmdb.org/t/p/w500/'+item.poster_path+'" style="float: left; margin-right: '+10*getHeightK()+'px; margin-bottom: '+10*getHeightK()+'px; border-width: 0px; border-style: solid;" onerror="this.width=0;this.height=0;">':'')
+                + (item.poster_path?'<img height="'+300*getHeightK()+'" width="'+200*getHeightK()+'" src="https://image.tmdb.org/t/p/w500/'+item.poster_path+'" style="float: left; margin-right: '+10*getHeightK()+'px; margin-bottom: '+10*getHeightK()+'px; border-width: 0px; border-style: solid;" onerror="this.width=0;this.height=0;">':'')
                 + '<div style="text-align:center;font-size:larger;">'+(item.title||item.name)+'</div><br>'
                 // + it(item.original_name, '') + it(item.release_date, 'Release date')
                 + it((item.release_date||'').split('-')[0], 'Year') + it(Math.round(item.runtime||item.episode_run_time)+' '+_('min'), 'Duration')
@@ -902,7 +880,7 @@ var TMDb = {
         var s = '<img height="'+20*TMDb.hk+'" src="'+host+'/stbPlayer/blue_short.png" style="float: right; margin: '+10*TMDb.hk+'px;">';
         s+= '<span id="_sel">1</span>/'+TMDb.results.length+'<div id="_tmdb" style="clear:both;overflow:hidden;"><div id="tmdb" style="white-space:nowrap;position:relative;">';
         TMDb.results.forEach(function(val, ind){
-            s += '<div id="tmdb'+ind+'" style="display: inline-block; height:'+300*TMDb.hk+'px; width:'+150*TMDb.hk+'px; background-position: center; background-size: contain; background-repeat: no-repeat; background-image: url('+(val.poster_path?'http://image.tmdb.org/t/p/w500/'+val.poster_path:host+'/stbPlayer/no_image.png')+');" onclick="TMDb.setSelect('+ind+');"></div>';
+            s += '<div id="tmdb'+ind+'" style="display: inline-block; height:'+300*TMDb.hk+'px; width:'+150*TMDb.hk+'px; background-position: center; background-size: contain; background-repeat: no-repeat; background-image: url('+(val.poster_path?'https://image.tmdb.org/t/p/w500/'+val.poster_path:host+'/stbPlayer/no_image.png')+');" onclick="TMDb.setSelect('+ind+');"></div>';
         });
         $('#dialogbox').html(s+'</div><div id="_desc"></div></div>').show();
         $('#_desc').width($('#_tmdb').width());
@@ -2342,9 +2320,6 @@ function loadValue(){
             _code = json.code;
             $('#listEdit').html(
                 '<div style="text-align:center;font-size:larger;"><br/>'+_('Request sended!')+'<br/><br/>'+
-//                _('For enter value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+'http://drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
-//                _('or scan')+':<br/><br/>'+
-//                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl=http://'+__test+'drm-play.com/swop/?'+_code+'" style="height:30%;"/></div>'+
                 _('For enter value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
                 _('or scan')+':<br/><br/>'+
                 '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl='+scheme+__test+'drm-play.com/swop/?'+_code+'" style="height:30%;"/></div>'+
@@ -3353,7 +3328,7 @@ function sendSettings(){
     var _timeout = setTimeout( _close, 600000);
     $('#listAbout').html('<div style="text-align:center;font-size:larger;"><br/><br/>'+_('Send settings')+'...</div>').show();
     aboutKeyHandler = function(code){ if(code==keys.RETURN||code==keys.EXIT) _close(); return true; }
-    var s = '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">\n<properties>\n<comment>OTT-Play Preferences</comment>';
+    var s = '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE properties SYSTEM "https://java.sun.com/dtd/properties.dtd">\n<properties>\n<comment>OTT-Play Preferences</comment>';
     var ii = stbGetAllItems();
     for (prop in ii) {
         if (hasOwnProperty.call(ii, prop)) s += '\n<entry key="'+prop+'">'+ii[prop]+'</entry>';
@@ -3364,9 +3339,6 @@ function sendSettings(){
         success: function(json){
             $('#listAbout').html(
                 '<div style="text-align:center;font-size:larger;"><br/>'+_('Settings sended!')+'<br/><br/>'+
-//                _('For download settings file open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+'http://drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+json.code+'</span><br/><br/>'+
-//                _('or scan')+':<br/><br/>'+
-//                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl=http://'+__test+'drm-play.com/swop/?'+json.code+'" style="height:30%;"/></div>'+
                 _('For download settings file open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+json.code+'</span><br/><br/>'+
                 _('or scan')+':<br/><br/>'+
                 '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl='+scheme+__test+'drm-play.com/swop/?'+json.code+'" style="height:30%;"/></div>'+
@@ -3419,9 +3391,6 @@ function loadSettings(){
             _code = json.code;
             $('#listAbout').html(
                 '<div style="text-align:center;font-size:larger;"><br/>'+_('Request sended!')+'<br/><br/>'+
-//                _('For upload settings file open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+'http://drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
-//                _('or scan')+':<br/><br/>'+
-//                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl=http://'+__test+'drm-play.com/swop/?'+_code+'" style="height:30%;"/></div>'+
                 _('For upload settings file open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
                 _('or scan')+':<br/><br/>'+
                 '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl='+scheme+__test+'drm-play.com/swop/?'+_code+'" style="height:30%;"/></div>'+
@@ -3924,15 +3893,7 @@ function exitPortal(){ confirmBox('Do you want to exit player?',
     });
 }
 
-/**
-* HSV to RGB color conversion
-*
-* H runs from 0 to 360 degrees
-* S and V run from 0 to 100
-*
-* Ported from the excellent java algorithm by Eugene Vishnevsky at:
-* http://www.cs.rit.edu/~ncs/color/t_convert.html
-*/
+
 function hsvToRgb(h, s, v) {
     var r, g, b;
     var i;
@@ -4795,9 +4756,6 @@ function edit_dealer_remote(){
             _code = json.code;
             $('#listEdit').html(
                 '<div style="text-align:center;font-size:larger;"><br/>'+_('Request sended!')+'<br/><br/>'+
-//                _('For enter value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+'http://drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
-//                _('or scan')+':<br/><br/>'+
-//                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl=http://'+__test+'drm-play.com/swop/?'+_code+'" style="height:30%;"/></div>'+
                 _('For enter value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
                 _('or scan')+':<br/><br/>'+
                 '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl='+scheme+__test+'drm-play.com/swop/?'+_code+'" style="height:30%;"/></div>'+

@@ -127,18 +127,7 @@ function addChan2cat(cat, ci){
     cats[cat].push(ci);
 }
 function getChanelsArray(callback){
-/**
- * JS Implementation of MurmurHash3 (r136) (as of May 20, 2011)
- *
- * @author <a href="mailto:gary.court@gmail.com">Gary Court</a>
- * @see http://github.com/garycourt/murmurhash-js
- * @author <a href="mailto:aappleby@gmail.com">Austin Appleby</a>
- * @see http://sites.google.com/site/murmurhash/
- *
- * @param {string} key ASCII only
- * @param {number} seed Positive integer only
- * @return {number} 32-bit positive integer hash
- */
+
 
 function murmurhash3_32_gc(key, seed) {
         var remainder, bytes, h1, h1b, c1, c1b, c2, c2b, k1, i;
@@ -227,7 +216,7 @@ function loadPlaylist(url, success, callback){
         error: function(){
             $(launch_id).append('Загрузка через cors-proxy плеера...');
             $.ajax({                                               
-                url: 'http://cors.drm-play.com/m3u/cp.php', data:{url:'@'+cpurl,svc:btoa(Math.round(Date.now()/1000)),a:box_mac_},type:'post',dataType:'text',timeout: 10000, success: success,
+                url: 'https://cors.drm-play.com/m3u/cp.php', data:{url:'@'+cpurl,svc:btoa(Math.round(Date.now()/1000)),a:box_mac_},type:'post',dataType:'text',timeout: 10000, success: success,
                 error: function(jqXHR, textStatus, errorThrown){
                     console.log( 'channels : jqXHR:'+JSON.stringify(jqXHR)+ '; textStatus: '+textStatus+ ', errorThrown: '+errorThrown );
                     alert( _('Failed to load channel list!') );
@@ -447,7 +436,7 @@ if(listdrm <1){
 function _m3u2popup(){
     var i = parseInt(m3uArr.active),b,c,a = m3uArr.M3Us[i];
     if (drm_list > 0) {b='Загрузить: '+ edTlist[drm_list];c='Загрузить встроенный плейлист: '+ edTlist[drm_list];}else {b='';c='';}
-    popupArray[popupActions.indexOf(doEditM3Ua)] = _('Select playlist')+': '+((i+1)+' - '+(a.name || a.www || '')); // .replace('https://', '').replace('http://', '')
+    popupArray[popupActions.indexOf(doEditM3Ua)] = _('Select playlist')+': '+((i+1)+' - '+(a.name || a.www || '')); 
     popupArray[popupActions.indexOf(doEditList)] = 'Выбор встроенного плейлиста: '+ edTlist[drm_list];
     popupArray[popupActions.indexOf(loadDrmList)] = b;
     popupDetail.splice(dind, 3, vdList[drm_list],c,_('Select playlist'));
@@ -526,7 +515,7 @@ function tv24t(){
 						success:function(data){if(data !== null) tv24token=data.access_token; providerSetItem("tv24token", tv24token);}, 
 						});},
 				error: function(){
-						ur="http://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
+						ur="https://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
 						m='0be155fc-f0fc-4XX9-873b-XXXXXXXXXXXX'.replace(/X/g, function(){return "0123456789abcdef".charAt(Math.floor(Math.random()*16))});
 						dat={device_type:"pc",vendor:"PC",model:"Edge 129",version:"163",os_name:"Windows",os_version:"10",application_type:"web",serial:m};
 			            $.ajax({url:ur,dataType:'json',data:dat,type:"POST",timeout:5000,async:true,
@@ -538,7 +527,7 @@ function tv24t(){
 					    },		
 			}); return tv24token;
 	}
-	ur="http://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
+	ur="https://api.24h.tv/v2/users/self/devices?access_token="+tv24tm;
 	m='0be155fc-f0fc-4XX9-873b-XXXXXXXXXXXX'.replace(/X/g, function(){return "0123456789abcdef".charAt(Math.floor(Math.random()*16))});
 	dat={device_type:"pc",vendor:"PC",model:"Edge 129",version:"163",os_name:"Windows",os_version:"10",application_type:"web",serial:m};
             $.ajax({url:ur,dataType:'json',data:dat,type:"POST",timeout:5000,async:true,
@@ -553,11 +542,11 @@ ur=ur+"&format=json";
         rep_token="access_token="+tv24token;
 		ur=ur.replace(/access_token/g,rep_token);
             $.ajax({ url: ur, dataType: 'json', type: "GET", timeout: 10000, async:false,
-                success: function(data){ if(data !== null) d = data; url_tv=d.http||d.hls_mbr||d.hls;url_tv=url_tv.replace(/https:/g,"http:");},
+                success: function(data){ if(data !== null) d = data; url_tv=d.http||d.hls_mbr||d.hls;url_tv=url_tv.replace(/https:/g,"https:");},
                 error: function(){
                         $.ajax({ url: host+'/m3u/corsp.php', dataType: 'json', type: "POST", data: {stk:2,lst:drm_list,id:ur,svc:btoa(Math.round(Date.now()/1000)),a:box_mac_}, timeout: 10000, async:false,
-                        success: function(data){if(data !== null) d = data; url_tv=d.http||d.hls_mbr||d.hls;url_tv=url_tv.replace(/https:/g,"http:");},
-                        error: function(){providerSetItem("tv24token",""),tv24token=tv24t(),url_tv="http://tv.drm-play.com/2/mono.m3u8",alert ('В Вашем регионе доступ к каналу ограничен');},           
+                        success: function(data){if(data !== null) d = data; url_tv=d.http||d.hls_mbr||d.hls;url_tv=url_tv.replace(/https:/g,"https:");},
+                        error: function(){providerSetItem("tv24token",""),tv24token=tv24t(),url_tv="https://tv.drm-play.com/2/mono.m3u8",alert ('В Вашем регионе доступ к каналу ограничен');},           
                         });},}); 
 return url_tv;
 }$.ajax({method:'get',url:host+'/m3u/0/',dataType:"script",async:false});
@@ -666,7 +655,7 @@ function repurl(ur){
    }else if(ur.indexOf('stk.drmplay.top')>0){
         id_stk=ur.replace(/http\:\/\/stk\.drmplay\.top\//g,"");
         $.ajax({
-           url: 'http://cors.drm-play.com/m3u/cors-stk.php'+id_stk, dataType: 'json', type: "GET", timeout: 5000, async:false, 
+           url: 'https://cors.drm-play.com/m3u/cors-stk.php'+id_stk, dataType: 'json', type: "GET", timeout: 5000, async:false, 
            success: function(data){ if(data !== null) d = data; url=d.url;
            },
         });
@@ -677,7 +666,7 @@ function repurl(ur){
   }else if(ur.indexOf('smk.drmplay.top')>0){
         id_stk=ur.replace(/http\:\/\/smk\.drmplay\.top\//g,"");
         $.ajax({
-           url: 'http://cors.drm-play.com/m3u/cors-stk.php'+id_stk, dataType: 'json', type: "GET", timeout: 5000, async:false, 
+           url: 'https://cors.drm-play.com/m3u/cors-stk.php'+id_stk, dataType: 'json', type: "GET", timeout: 5000, async:false, 
            success: function(data){ if(data !== null) d = data; url=d.url;
            },
         });return url;
@@ -693,7 +682,7 @@ function repurl(ur){
         data_lm= typeof(lm_arr[id_lm]) !== "undefined" && lm_arr[id_lm] !== null ? lm_arr[id_lm]['data'] : 0;
         if (data_lm > Math.floor(Date.now()/1000))
         {url_arh=lm_arr[id_lm]['arh'];url=lm_arr[id_lm]['url'];return url;}
-                $.ajax({ url: 'http://ott.drm-play.com/m3u/corsp.php', dataType: 'json', type: "POST", data: {stk:1,lst:drm_list,id:id_lm,svc:btoa(Math.round(Date.now()/1000)),a:box_mac_}, timeout: 10000, async:false,
+                $.ajax({ url: 'https://ott.drm-play.com/m3u/corsp.php', dataType: 'json', type: "POST", data: {stk:1,lst:drm_list,id:id_lm,svc:btoa(Math.round(Date.now()/1000)),a:box_mac_}, timeout: 10000, async:false,
                         success: function(data){if(data !== null) d=data;url=d.url;url_arh=d.url_arh;
                         if (ur.indexOf('index-')>0) { ar=ur.match('index-(.*)$');url=url_arh+'/index-'+ar[0];}
                         },
@@ -861,7 +850,7 @@ function doEditListData(ind){
                     _code = json.code;
                     $('#listEdit').html(
                         '<div style="text-align:center;font-size:larger;"><br/>'+_('Request sended!')+'<br/><br/>'+
-                        _('To enter playlist value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+host+'</span> t.me/tv4u_bot '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
+                        _('To enter playlist value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+'</span> t.me/tv4u_bot '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
                         _('or scan')+':<br/><br/>'+
                         '<div><img src="https://zarcom-inc.github.io/tv4u/stbPlayer/bot.png" style="max-width: 30%; height: auto; display: block; margin: auto;" alt="bot"></div>'+
                         '</div>'
