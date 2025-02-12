@@ -1,5 +1,5 @@
 {
     "name": "TV4U",
     "version": "1.0.0",
-    "parameter": "content:https://storage.googleapis.com/tv4u/TV4U_MSX/content.json"
+    "parameter": "content:https://zarcom-inc.github.io/tv4u/content.json"
 }
