@@ -1,0 +1,20 @@
+{
+   "headline": "TV4U STREAMING",
+   "action": "link:https://storage.googleapis.com/tv4u/TV4U_MSX/pc.html",
+   "dictionary": "https://ottp.eu.org/msx/ru.json",
+   "pages": [
+      {"items": [
+         {
+         "type": "default",
+         "layout": "0,0,12,6",
+         "color": "msx-glass",
+         "text": "TV4U {br}{br}{ico:sms} Telegram: {txt:msx-white:@tv4u_bot}{br}{ico:public} Web: {txt:msx-white:https://tv4u.com/}{br}",
+         "image": "https://storage.googleapis.com/tv4u/TV4U_MSX/pc_files/400x400.png",
+         "imageFiller": "height-right",
+         "imageOverlay": 0,
+         "imagePreload": true,
+         "action": "link:https://storage.googleapis.com/tv4u/TV4U_MSX/pc.html"
+         }
+      ]}
+   ]
+}
