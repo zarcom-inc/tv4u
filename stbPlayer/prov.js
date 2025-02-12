@@ -863,7 +863,7 @@ function doEditListData(ind){
                         '<div style="text-align:center;font-size:larger;"><br/>'+_('Request sended!')+'<br/><br/>'+
                         _('To enter playlist value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+host+'</span> t.me/tv4u_bot '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
                         _('or scan')+':<br/><br/>'+
-                        '<div><img src="https://zarcom-inc.github.io/tv4u/stbPlayer/bot.png" style="max-width: 30%; height: auto; display: block; margin: auto;" alt="bot"></div>'+
+                        '<div><img src="./stbPlayer/bot.png" style="max-width: 30%; height: auto; display: block; margin: auto;" alt="bot"></div>'+
                         '</div>'
                     );
                     //setTimeout(get_settings, 10000);
