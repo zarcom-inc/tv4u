@@ -6,7 +6,7 @@
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="drm-play.com">
-    <title>drm-play swop</title>
+    <title>TV4U</title>
     
     <!-- Bootstrap CSS (from CDN) -->
     <link rel="stylesheet"
@@ -19,8 +19,7 @@
   </head>
   <body class="text-center">
     <div class="form-signin">
-      <!-- Use your logo.png -->
-      <img class="mb-4" src="logo.png" alt="Logo" width="72" height="72">
+      <img class="mb-4" src="logo.png" alt="Logo" width="288" height="288">
       
       <input type="text" id="inputCode" class="form-control" placeholder="Code"
              required autofocus minlength="6" maxlength="6" oninput="dochangecode();">
@@ -36,7 +35,6 @@
       </button>
       <input type="file" id="my_hidden_file" accept=".pref" name="loadfile" onchange="doUpload();" style="display:none">
       
-      <!-- Section for sending a variable -->
       <div id="divSend" style="display:none">
         <label id="lVar" for="inputVar">Variable name</label>
         <input type="text" id="inputVar" class="form-control" required autofocus>
@@ -46,7 +44,6 @@
         </button>
       </div>
       
-      <!-- Section for sending m3u variables -->
       <div id="divSend-m3u" style="display:none">
         <label id="name-m3u" for="inputName-m3u">Variable name</label>
         <input type="text" id="inputName-m3u" class="form-control" required autofocus>
@@ -62,7 +59,6 @@
         </button>
       </div>
       
-      <!-- Section for sending ED variables -->
       <div id="divSend-ed" style="display:none">
         <label id="edkey" for="input-edkey">Variable name</label>
         <input type="text" id="input-edkey" class="form-control" required autofocus>

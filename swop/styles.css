@@ -55,6 +55,13 @@ body {
 
 /* Optionally, adjust the button width if you don’t want full width */
 .btn-block {
-  /* Remove full width if needed; comment out the next line to keep Bootstrap’s default */
   /* width: auto; */
+}
+
+/* --- Custom Override for the Check button --- */
+/* This makes the Check button red */
+#btnCheck {
+  background-color: red !important;
+  border-color: red !important;
+  color: #fff !important;
 }
