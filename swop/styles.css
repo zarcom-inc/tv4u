@@ -1,31 +1,60 @@
+/* Ensure the full height for proper vertical centering */
+html, body {
+  height: 100%;
+}
+
+/* Body styling */
 body {
-  font-family: Arial, sans-serif;
-  margin: 2em;
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
 }
 
-.hidden {
-  display: none;
+/* Form container */
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
 }
 
-label {
-  display: block;
-  margin-top: 1em;
-  font-weight: bold;
+/* Checkbox (if used) */
+.form-signin .checkbox {
+  font-weight: 400;
 }
 
-input[type="text"] {
-  width: 80%;
-  padding: 0.5em;
-  font-size: 1em;
+/* Input styling */
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
 }
 
-button {
-  padding: 0.5em 1em;
-  font-size: 1em;
-  margin-top: 1em;
+/* Bring input to front on focus */
+.form-signin .form-control:focus {
+  z-index: 2;
 }
 
-.error {
-  color: red;
-  margin-top: 0.5em;
+/* If you have email inputs, remove bottom rounding */
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* For password inputs (if used) */
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Optionally, adjust the button width if you don’t want full width */
+.btn-block {
+  /* Remove full width if needed; comment out the next line to keep Bootstrap’s default */
+  /* width: auto; */
 }
