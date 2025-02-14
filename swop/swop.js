@@ -1,30 +1,33 @@
-// Define the backend URL
-var backendUrl = 'swop/a.php';
+// Set the backend URL (make sure it starts with a slash so it’s relative to your site’s root)
+var backendUrl = '/a.php';
 
-// Global variables for messages
-var sErrorCode = 'Incorrect Сode!',
+// Global message strings
+var sErrorCode = 'Incorrect Code!',
     sErrorFileSize = 'File size limited!!!',
     sFileUploaded = 'File uploaded!',
     sValueSended = 'Value sended!';
 
+// When the user types a code, enable the Check button only when there are 4 characters.
 function dochangecode() {
-  $('#btnCheck').prop('disabled', $('#inputCode').val().length != 6);
+  $('#btnCheck').prop('disabled', $('#inputCode').val().length !== 4);
 }
 
 function doCheck() {
-  var enteredCode = $('#inputCode').val();
+  var enteredCode = $('#inputCode').val().trim();
   $.ajax({
     url: backendUrl,
     type: 'post',
     data: { c: 'check', d: enteredCode },
+    // Ensure cookies are sent (if testing cross‑domain)
+    xhrFields: { withCredentials: true },
     success: function (response) {
-      if (response.data === 'playlist') {
+      if (response.status === 'success' && response.data === 'playlist') {
         // The entered code is correct—load the playlist into the STB player.
         var playlistUrl = response.playlist;
-        // Call your stbplayer's function to load the playlist URL
+        // Call your STB player function (for example, stbPlay) to load the playlist.
         stbPlay(playlistUrl);
       } else {
-        alert(response.message);
+        alert(response.message || sErrorCode);
       }
     },
     error: function () {
@@ -133,31 +136,31 @@ function doSend_ed() {
 
 $(document).ready(function () {
   var l = (navigator.language || '').substr(0, 2);
-  switch (l) {
-    case 'ru':
-      $('#inputCode').attr('placeholder', 'Код');
-      $('#btnCheck').text('Проверить');
-      $('#btnDownload').text('Скачать');
-      $('#btnUpload').text('Отправить');
-      $('#btnSend').text('Отправить');
-      sErrorCode = 'Неверный код!';
-      sErrorFileSize = 'Размер файла ограничен!!!';
-      sFileUploaded = 'Файл отправлен!';
-      sValueSended = 'Значение отправлено!';
-      break;
-    case 'uk':
-      $('#inputCode').attr('placeholder', 'Код');
-      $('#btnCheck').text('Перевірити');
-      $('#btnDownload').text('Завантажити');
-      $('#btnUpload').text('Надіслати');
-      $('#btnSend').text('Надіслати');
-      sErrorCode = 'Невірний код!';
-      sErrorFileSize = 'Розмір файлу обмежений!!!';
-      sFileUploaded = 'Файл відправлений!';
-      sValueSended = 'Значення відправлено!';
-      break;
+  if (l === 'ru') {
+    $('#inputCode').attr('placeholder', 'Код');
+    $('#btnCheck').text('Проверить');
+    $('#btnDownload').text('Скачать');
+    $('#btnUpload').text('Отправить');
+    $('#btnSend').text('Отправить');
+    sErrorCode = 'Неверный код!';
+    sErrorFileSize = 'Размер файла ограничен!!!';
+    sFileUploaded = 'Файл отправлен!';
+    sValueSended = 'Значение отправлено!';
+  } else if (l === 'uk') {
+    $('#inputCode').attr('placeholder', 'Код');
+    $('#btnCheck').text('Перевірити');
+    $('#btnDownload').text('Завантажити');
+    $('#btnUpload').text('Надіслати');
+    $('#btnSend').text('Надіслати');
+    sErrorCode = 'Невірний код!';
+    sErrorFileSize = 'Розмір файлу обмежений!!!';
+    sFileUploaded = 'Файл відправлений!';
+    sValueSended = 'Значення відправлено!';
   }
+  // If a code is provided via the URL query string, prefill it.
   $('#inputCode').val((window.location.href.split('?')[1] || '').split('&')[0]);
   dochangecode();
-  if ($('#inputCode').val().length === 6) doCheck();
+  if ($('#inputCode').val().length === 4) {
+    doCheck();
+  }
 });

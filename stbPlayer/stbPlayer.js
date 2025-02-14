@@ -19,35 +19,13 @@ var version = '<br/>Version: 2.4.32 (10/2/2022)',
 $.support.cors = true;
 $.ajaxSetup({cache: true});
 var __cv =40;
-//var provaide = window.location.href.split('?')[1].split('&')[0];
-//if(typeof(scheme) == "undefined") 
+
 var scheme='http://';
 
-//var scheme='http://';
 var useragent = navigator.userAgent;
 if (window.location.href.indexOf('https:')>=0) scheme='https://';
-/*
-try {
-  var _xhr = new XMLHttpRequest();
-  _xhr.open('GET', 'https://ott.drm-play.com/scheme.php', true);
-  _xhr.onerror = function () {scheme='http://';};
-<<<<<<< HEAD
-  _xhr.onreadystatechange = function () {if (_xhr.readyState === 4 && _xhr.status === 204&&useragent.indexOf('Maple')===false&&useragent.indexOf('LG SimpleSmart')===false&&useragent.indexOf('LG NetCast.TV')===false&&useragent.indexOf('MAG')===false) { scheme='http://';} };
-=======
-  _xhr.onreadystatechange = function () {if (_xhr.readyState === 4 && _xhr.status === 204&&useragent.indexOf('Maple')===false&&useragent.indexOf('LG SimpleSmart')===false&&useragent.indexOf('LG NetCast.TV')===false&&useragent.indexOf('MAG')===false) { scheme='https://';} };
->>>>>>> parent of 5a1b5b2 (http->s)
-  _xhr.send();
-} catch(e) {scheme='http://';} 
-*/
-//if (useragent.indexOf('Android')>0){scheme='https://';}
-//if (useragent.indexOf('Maple')>0||useragent.indexOf('LG SimpleSmart')>0||useragent.indexOf('LG NetCast.TV')>0 ||useragent.indexOf('MAG')>0){scheme='http://';}
-//console.log('scheme:'+scheme);
-host=scheme+'ott.drm-play.com';
 
-//if(typeof(host) == "undefined") host = '';
-
-//if(host != 'http://ott-play.com') host = ''; // for SONY !!!!!
-
+host=scheme+'tv4u.ct.ws';
 
 var listdrm=0,abcv=0;
 function getWidthK(){ return window.innerWidth/1280; }
@@ -2347,12 +2325,9 @@ function loadValue(){
             _code = json.code;
             $('#listEdit').html(
                 '<div style="text-align:center;font-size:larger;"><br/>'+_('Request sended!')+'<br/><br/>'+
-//                _('For enter value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+'http://drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
-//                _('or scan')+':<br/><br/>'+
-//                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl=http://'+__test+'drm-play.com/swop/?'+_code+'" style="height:30%;"/></div>'+
-                _('For enter value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
+                _('For enter value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'http://tv4u.ct.ws/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
                 _('or scan')+':<br/><br/>'+
-                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl='+scheme+__test+'drm-play.com/swop/?'+_code+'" style="height:30%;"/></div>'+
+                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl='+scheme+__test+'http://tv4u.ct.ws/swop/?'+_code+'" style="height:30%;"/></div>'+
                 '</div>'
             );
             // get_settings();
@@ -3369,12 +3344,9 @@ function sendSettings(){
         success: function(json){
             $('#listAbout').html(
                 '<div style="text-align:center;font-size:larger;"><br/>'+_('Settings sended!')+'<br/><br/>'+
-//                _('For download settings file open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+'http://drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+json.code+'</span><br/><br/>'+
-//                _('or scan')+':<br/><br/>'+
-//                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl=http://'+__test+'drm-play.com/swop/?'+json.code+'" style="height:30%;"/></div>'+
-                _('For download settings file open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+json.code+'</span><br/><br/>'+
+                _('For download settings file open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'http://tv4u.ct.ws/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+json.code+'</span><br/><br/>'+
                 _('or scan')+':<br/><br/>'+
-                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl='+scheme+__test+'drm-play.com/swop/?'+json.code+'" style="height:30%;"/></div>'+
+                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl='+scheme+__test+'http://tv4u.ct.ws/swop/?'+json.code+'" style="height:30%;"/></div>'+
                 '</div>'
             )
         },
@@ -3401,8 +3373,8 @@ function loadSettings(){
                 // else if(json.status === 'error') get_code()
                 else if (json.status === 'success') {
                     var s = json.data;
-                    if(s.indexOf('<comment>DRM-Play Preferences</comment>')!=-1||s.indexOf('<comment>OTT-Play Preferences</comment>')!=-1){
-                        $('#listAbout').html('<div style="text-align:center;font-size:200%;"><br/><br/>DRM-Play Preferences received!<br/>Restart player...</div>');
+                    if(s.indexOf('<comment>TV4U Preferences</comment>')!=-1||s.indexOf('<comment>OTT-Play Preferences</comment>')!=-1){
+                        $('#listAbout').html('<div style="text-align:center;font-size:200%;"><br/><br/>TV4U Preferences received!<br/>Restart player...</div>');
                         var kk = s.split('<entry key="');
                         kk.shift();
                         try{ stbClearAllItems(); }catch(e){}
@@ -3411,7 +3383,7 @@ function loadSettings(){
                             stbSetItem(val[0], val[1]);
                         });
                         restart();
-                    } else $('#listAbout').html('<div style="text-align:center;font-size:larger;color:red"><br/><br/>ERROR:<br/>File not DRM-Play Preferences!!!</div>');
+                    } else $('#listAbout').html('<div style="text-align:center;font-size:larger;color:red"><br/><br/>ERROR:<br/>File not TV4U Preferences!!!</div>');
                 }
             }
         })
@@ -3424,12 +3396,9 @@ function loadSettings(){
             _code = json.code;
             $('#listAbout').html(
                 '<div style="text-align:center;font-size:larger;"><br/>'+_('Request sended!')+'<br/><br/>'+
-//                _('For upload settings file open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+'http://drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
-//                _('or scan')+':<br/><br/>'+
-//                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl=http://'+__test+'drm-play.com/swop/?'+_code+'" style="height:30%;"/></div>'+
-                _('For upload settings file open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
+                _('For upload settings file open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'http://tv4u.ct.ws/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
                 _('or scan')+':<br/><br/>'+
-                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl='+scheme+__test+'drm-play.com/swop/?'+_code+'" style="height:30%;"/></div>'+
+                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl='+scheme+__test+'http://tv4u.ct.ws/swop/?'+_code+'" style="height:30%;"/></div>'+
                 '</div>'
             );
             // get_settings();
@@ -4800,12 +4769,9 @@ function edit_dealer_remote(){
             _code = json.code;
             $('#listEdit').html(
                 '<div style="text-align:center;font-size:larger;"><br/>'+_('Request sended!')+'<br/><br/>'+
-//                _('For enter value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+'http://drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
-//                _('or scan')+':<br/><br/>'+
-//                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl=http://'+__test+'drm-play.com/swop/?'+_code+'" style="height:30%;"/></div>'+
-                _('For enter value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'drm-play.com/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
+                _('For enter value open')+'<br/><span style="font-size:larger;color:'+curColor+'">'+__test+scheme+'http://tv4u.ct.ws/swop</span> '+_('and enter code')+' <span style="font-size:larger;color:'+curColor+'">'+_code+'</span><br/><br/>'+
                 _('or scan')+':<br/><br/>'+
-                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl='+scheme+__test+'drm-play.com/swop/?'+_code+'" style="height:30%;"/></div>'+
+                '<div><img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chld=|1&chl='+scheme+__test+'http://tv4u.ct.ws/swop/?'+_code+'" style="height:30%;"/></div>'+
                 '</div>'
             );
             setTimeout(get_settings, 10000);
@@ -4941,7 +4907,7 @@ function firstRun(){
 var dn=0,ck="";
 function selectLang(){
     var arrayLangs = ['_eng', '_arm', '_bel', '_fra','_geo', '_ger', '_gre', '_heb', '_hun', '_lat', '_lit', '_pol', '_por', '_rou', '_rus', '_spa', '_tur', '_ukr'];
-    var langArray = ['English', 'Armenian - Հայերեն', 'Belarusian - Беларуская', 'French - Français','Georgian - ქართული' + strNew, 'German - Deutsch', 'Greek - Ελληνικά', 'Hebrew - עברית', 'Hungarian - Magyar',
+    var langArray = ['English', 'Armenian - Հայերեն', 'Belarusian - Беларуская', 'French - Français','Georgian - ქართული', 'German - Deutsch', 'Greek - Ελληνικά', 'Hebrew - עברית', 'Hungarian - Magyar',
         'Latvian - Latviski', 'Lithuanian - Lietuvių', 'Polish - Polski', 'Portuguese - Português', 'Romanian - Română', 'Russian - Русский', 'Spanish - Español',
         'Turkish - Türkçe', 'Ukrainian - Українська'];
     selIndex = arrayLangs.indexOf(stbGetItem("ottplaylang")||'');
@@ -5241,7 +5207,7 @@ function loadProv(){
         delOption(edit_dealer);
     }
 
-    $.getScript("https://zarcom-inc.github.io/tv4u/stbPlayer/prov.js", function(){
+    $.getScript("/stbPlayer/prov.js", function(){
         try{
             // _sn=0; stat();
             ga_event('provaider', 'provaider', provaider);

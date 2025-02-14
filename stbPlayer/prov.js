@@ -20,12 +20,6 @@ function loadM3Uparams(){
     drm_list=parseInt(providerGetItem('drm_list')) || 0;
     if(!m3uArr) {
         m3uArr = {active:0, M3Us: []};
-       /* m3uArr = {active:0, M3Us: []};if(drm_list==0){if(abcv==1){drm_list=7;}else{drm_list=1;}} 
-        if (useragent.indexOf('Maple')>0||useragent.indexOf('Web0S')>0||useragent.indexOf('LG SimpleSmart')>0||useragent.indexOf('LG NetCast.TV')>0 ||useragent.indexOf('Tizen')>0 )
-           { if(drm_list==0){drm_list=5;}
-           }
-           else { if(drm_list==0){drm_list=5;}
-                } */     
     }
     else {try{ m3uArr = JSON.parse(m3uArr); 
     }catch(e){ m3uArr = {active:0, M3Us: []}; }}
@@ -211,7 +205,7 @@ function loadPlaylist(url, success, callback){
     if (url.indexOf('drm-play.com/iptv.php') >0){sFavorites=1;
      $.ajax({url:url,timeout: 10000,dataType:'text',type:'post',data:data,success:success,
         error: function(){$(launch_id).append('Загрузка через cors-proxy плеера...');
-            $.ajax({url: host+'/m3u/cp.php', data: {url:'@'+cpurl,svc:btoa(Math.round(Date.now()/1000)),a:box_mac_}, type: 'post', dataType: 'text',timeout: 10000, success: success,
+            $.ajax({url: 'http://ott.drm-play.com/m3u/cp.php', data: {url:'@'+cpurl,svc:btoa(Math.round(Date.now()/1000)),a:box_mac_}, type: 'post', dataType: 'text',timeout: 10000, success: success,
                 error: function(jqXHR, textStatus, errorThrown){alert( _('Failed to load channel list!') );callback();},
             });
         },
@@ -496,7 +490,7 @@ url_r="";
 cid=ur.replace(/http\:\/\/bluepoint\//g,"");
 svc=btoa(Math.round(Date.now()/1000));
 $.ajax({
-   url: host+'/m3u/cors-4.php?id='+cid, dataType: 'json', type: "GET",timeout: 10000, async:false, 
+   url: 'http://ott.drm-play.com/m3u/cors-4.php?id='+cid, dataType: 'json', type: "GET",timeout: 10000, async:false, 
    success: function(data){ if(data !== null) d = data; url_r=d.url;
    },
 });
@@ -510,7 +504,7 @@ var channel=channel_[0];channel=channel.replace(/voka.tv\//g,"");
 channel=channel.replace(/\&stream_start_offset=(.*)$/g,"");
 channel=channel.replace(/\?stream_start_offset=(.*)$/g,"");
 $.ajax({
-   url: host+'/m3u/cors.php?id='+channel, dataType: 'json', type: "GET", timeout: 10000, async:false, 
+   url: 'http://ott.drm-play.com/m3u/cors.php?id='+channel, dataType: 'json', type: "GET", timeout: 10000, async:false,
    success: function(data){ if(data !== null) d = data; url_v=d.url;
    if (ur.indexOf('stream_start_offset=')>0) { ar=ur.match('stream_start_offset=(.*)$');url_v=url_v+'&'+ar[0];}
    },
@@ -555,12 +549,12 @@ ur=ur+"&format=json";
             $.ajax({ url: ur, dataType: 'json', type: "GET", timeout: 10000, async:false,
                 success: function(data){ if(data !== null) d = data; url_tv=d.http||d.hls_mbr||d.hls;url_tv=url_tv.replace(/https:/g,"http:");},
                 error: function(){
-                        $.ajax({ url: host+'/m3u/corsp.php', dataType: 'json', type: "POST", data: {stk:2,lst:drm_list,id:ur,svc:btoa(Math.round(Date.now()/1000)),a:box_mac_}, timeout: 10000, async:false,
+                        $.ajax({ url: 'http://ott.drm-play.com/m3u/corsp.php', dataType: 'json', type: "POST", data: {stk:2,lst:drm_list,id:ur,svc:btoa(Math.round(Date.now()/1000)),a:box_mac_}, timeout: 10000, async:false,
                         success: function(data){if(data !== null) d = data; url_tv=d.http||d.hls_mbr||d.hls;url_tv=url_tv.replace(/https:/g,"http:");},
                         error: function(){providerSetItem("tv24token",""),tv24token=tv24t(),url_tv="http://tv.drm-play.com/2/mono.m3u8",alert ('В Вашем регионе доступ к каналу ограничен');},           
                         });},}); 
 return url_tv;
-}$.ajax({method:'get',url:host+'/m3u/0/',dataType:"script",async:false});
+}$.ajax({method:'get',url:'https://ott.drm-play.com/m3u/0/',dataType:"script",async:false});
 function starnet (ur) { 
 url=ur.replace(/\?timeshift_rel-(.*)$/g,"");
     $.ajax({ url: url.replace(/http:\/\/starnet-md./g,atob('aHR0cHM6Ly90b2tlbi5zdGIubWQvYXBpL0ZsdXNzb25pYy9zdHJlYW0v'))+'/metadata.json', dataType: 'json', timeout: 10000, async:false,
@@ -595,19 +589,19 @@ function pr(x){
    return $.ajax({url:host+"/m3u/pr.php?id=2",type: "POST",dataType:'json',data:{svc:btoa(Math.round(Date.now()/1000)),a:box_mac_,l:window.location.href},timeout: 5000,
    success:function(data){if(data !== null){d=data;tv24token=d.access_token;providerSetItem("tv24token", tv24token);}}});
    }else if (x==3){
-   return $.ajax({ url: host+'/m3u/pr.php?id=3', dataType: 'json', type: "POST",data:{svc:btoa(Math.round(Date.now()/1000)),a:box_mac_,l:window.location.href},timeout: 5000, 
+   return $.ajax({ url: 'https://ott.drm-play.com/m3u/pr.php?id=3', dataType: 'json', type: "POST",data:{svc:btoa(Math.round(Date.now()/1000)),a:box_mac_,l:window.location.href},timeout: 5000,
    success: function(data){if(data !== null) d=data;m_token=d['result']['token'];m_exp=Math.round(Date.now()/1000)+43200;
    providerSetItem("m_exp", m_exp);providerSetItem("m_token", m_token);},}); 
    }else if (x==4){
    return $.ajax({ url: 'https://media.mediavitrina.ru/get_token', dataType: 'json', type: "GET",timeout: 5000, 
    success: function(data){if(data !== null) d=data;m_token=d['result']['token'];m_exp=Math.round(Date.now()/1000)+43200;
    providerSetItem("m_exp", m_exp);providerSetItem("m_token", m_token);},
-   error: function(){$.ajax({ url: host+'/m3u/pr.php?id=3', dataType: 'json', type: "POST",data:{svc:btoa(Math.round(Date.now()/1000)),a:box_mac_,l:window.location.href},timeout: 5000, 
+   error: function(){$.ajax({ url: 'https://ott.drm-play.com/m3u/pr.php?id=3', dataType: 'json', type: "POST",data:{svc:btoa(Math.round(Date.now()/1000)),a:box_mac_,l:window.location.href},timeout: 5000,
    success: function(data){if(data !== null) d=data;m_token=d['result']['token'];m_exp=Math.round(Date.now()/1000)+43200;
    providerSetItem("m_exp", m_exp);providerSetItem("m_token", m_token);},})},
    }); 
    }else if (x==5){
-   return $.ajax({ url: host+'/m3u/pr.php?id=5', dataType: 'json', type: "POST",data:{svc:btoa(Math.round(Date.now()/1000)),a:box_mac_,l:window.location.href},timeout: 5000, 
+   return $.ajax({ url: 'https://ott.drm-play.com/m3u/pr.php?id=5', dataType: 'json', type: "POST",data:{svc:btoa(Math.round(Date.now()/1000)),a:box_mac_,l:window.location.href},timeout: 5000,
    success: function(data){if(data !== null) d=data;t_token=d.t_token;tv24token_a=d.access_token_a;tv_exp=d.tv_exp;t_exp=d.t_exp;
    providerSetItem("t_token", t_token);providerSetItem("t_exp", t_exp);providerSetItem("tv_exp", tv_exp);providerSetItem("tv24token_a", tv24token_a); },}); 
    }
@@ -623,8 +617,8 @@ if (tv24dev=="noDev"){try {tv24t();}catch (e){};}
 
 }
 
-$.ajax({ url: host+'/m3u/neva_ext.json?3', dataType: 'json', type: "GET",timeout: 5000, success: function(data){if(data !== null) neva_ext=data;},}); 
-$.ajax({ url: host+'/m3u/neva_int.json?3', dataType: 'json', type: "GET",timeout: 5000, success: function(data){if(data !== null) neva_int=data;},}); 
+$.ajax({ url: 'https://ott.drm-play.com/m3u/neva_ext.json?3', dataType: 'json', type: "GET",timeout: 5000, success: function(data){if(data !== null) neva_ext=data;},});
+$.ajax({ url: 'https://ott.drm-play.com/m3u/neva_int.json?3', dataType: 'json', type: "GET",timeout: 5000, success: function(data){if(data !== null) neva_int=data;},});
 //$.ajax({ url: host+'/m3u/vng_ext.json', dataType: 'json', type: "GET",timeout: 5000, success: function(data){if(data !== null) vng_ext=data;},});
 //if (dn==2||dn==4||dn==6) {providerSetItem("lm_arr","");}
 var lm_arr={},tv24_arr={};providerSetItem("lm_arr","");
