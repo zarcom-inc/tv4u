@@ -23,7 +23,7 @@ var __cv =40;
 //if(typeof(scheme) == "undefined") 
 var scheme='http://';
 
-//var scheme='http://'; 
+//var scheme='http://';
 var useragent = navigator.userAgent;
 if (window.location.href.indexOf('https:')>=0) scheme='https://';
 /*

@@ -1,3 +1,6 @@
+// Define the backend URL
+var backendUrl = 'swop/a.php';
+
 // Global variables for messages
 var sErrorCode = 'Incorrect Сode!',
     sErrorFileSize = 'File size limited!!!',
@@ -9,58 +12,29 @@ function dochangecode() {
 }
 
 function doCheck() {
+  var enteredCode = $('#inputCode').val();
   $.ajax({
-    url: '/swop/a.php',
-    data: { c: 'check', d: $('#inputCode').val() },
+    url: backendUrl,
     type: 'post',
-    success: function (json) {
-      if (json.data === 'send') {
-        $('#inputCode').prop('disabled', true);
-        $('#btnCheck').hide();
-        $('#btnDownload').show().focus();
-      } else if (json.data === 'get') {
-        $('#inputCode').prop('disabled', true);
-        $('#btnCheck').hide();
-        $('#btnUpload').show().focus();
-      } else if (json.data === 'var') {
-        $('#inputCode').prop('disabled', true);
-        $('#btnCheck').hide();
-        $('#divSend').show();
-        $('#lVar').html(json.name + ':');
-        $('#inputVar').val(json.val).focus();
-      } else if (json.data === 'm3u') {
-        $('#inputCode').prop('disabled', true);
-        $('#btnCheck').hide();
-        $('#divSend-m3u').show();
-        $('#name-m3u').html(json.name + ':');
-        $('#inputName-m3u').val(json.val).focus();
-        $('#www-m3u').html(json.www + ':');
-        $('#inputWww-m3u').val(json.val).focus();
-        $('#medUrl-m3u').html(json.medUrl + ':');
-        $('#inputMedUrl-m3u').val(json.val).focus();
-      } else if (json.data === 'ed') {
-        $('#inputCode').prop('disabled', true);
-        $('#btnCheck').hide();
-        $('#divSend-ed').show();
-        $('#edkey').html(json.edkey + ':');
-        $('#input-edkey').val(json.val).focus();
-        $('#vpurl').html(json.vpurl + ':');
-        $('#input-vpurl').val(json.val).focus();
-        $('#edurl').html(json.edurl + ':');
-        $('#input-edurl').val(json.val).focus();
+    data: { c: 'check', d: enteredCode },
+    success: function (response) {
+      if (response.data === 'playlist') {
+        // The entered code is correct—load the playlist into the STB player.
+        var playlistUrl = response.playlist;
+        // Call your stbplayer's function to load the playlist URL
+        stbPlay(playlistUrl);
       } else {
-        alert(sErrorCode);
+        alert(response.message);
       }
     },
-    error: function (jqXHR) {
-      alert(sErrorCode);
-      console.log('error:' + JSON.stringify(jqXHR));
+    error: function () {
+      alert('Error checking the code');
     }
   });
 }
 
 function doDownload() {
-  window.open('/swop/a.php?c=download&d=' + $('#inputCode').val(), '_blank');
+  window.open(backendUrl + '?c=download&d=' + $('#inputCode').val(), '_blank');
   location.reload();
 }
 
@@ -79,7 +53,7 @@ function doUpload() {
   form_data.append('d', $('#inputCode').val());
   form_data.append('file', $('#my_hidden_file').prop('files')[0]);
   $.ajax({
-    url: '/swop/a.php',
+    url: backendUrl,
     dataType: 'text',
     cache: false,
     contentType: false,
@@ -99,7 +73,7 @@ function doUpload() {
 
 function doSend() {
   $.ajax({
-    url: '/swop/a.php',
+    url: backendUrl,
     data: { c: 'send_val', d: $('#inputCode').val(), v: $('#inputVar').val() },
     type: 'post',
     success: function (json) {
@@ -115,7 +89,7 @@ function doSend() {
 
 function doSend_m3u() {
   $.ajax({
-    url: '/swop/a.php',
+    url: backendUrl,
     data: {
       c: 'send_m3u',
       d: $('#inputCode').val(),
@@ -137,7 +111,7 @@ function doSend_m3u() {
 
 function doSend_ed() {
   $.ajax({
-    url: '/swop/a.php',
+    url: backendUrl,
     data: {
       c: 'send_ed',
       d: $('#inputCode').val(),
